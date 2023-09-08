@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import _ from 'lodash'
 import CardCase from './components/CardCase'
+import GameWin from './components/GameWin'
+import GameLose from './components/GameLose'
 import Pokedex from './pokedex'
 import pokeJohto from './assets/pokeJohto.png'
 import './App.css'
@@ -11,6 +13,8 @@ function App() {
   const [ bestScore, setBestScore ] = useState(0)
   const [pokeArray, setPokeArray] = useState(Pokedex)
   const [ memory, setMemory ] = useState([])
+  const [winScreen, setWinScreen] = useState(false)
+  const [loseScreen, setLoseScreen] = useState(false)
 
   useEffect(() => {
     setPokeArray(_.shuffle(Pokedex))
@@ -33,6 +37,17 @@ function App() {
     setPokeArray(_.shuffle(Pokedex));
     setMemory([]);
   }
+  function checkWin() {
+    if (score === 12) {
+    setWinScreen(true);
+    // if (score > bestScore) setBestScore(score);
+    // setPokeArray(_.shuffle(Pokedex));
+    // setMemory([]);
+    }
+  }
+  function newGame() {
+
+  }
 
   return (
     <div className='mainPage'>
@@ -44,6 +59,8 @@ function App() {
         </div>
       </header>
       <CardCase pokemon={pokeArray} clickHandler={cardClick}/>
+      <GameWin open={winScreen}/>
+      <GameLose open={loseScreen}/>
     </div>
   )
 }
