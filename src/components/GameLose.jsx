@@ -7,10 +7,11 @@ export default function GameLose({open, startGame}) {
 
     return (
       <div className="overlay">
-        <img src={latios} className='loseGame'>
+        <img src={latios} className='modalImage'/>
+        <div className='loseGame'>
           <div>You Lose!, Get More Badges and Try Again!</div>
           <button className='startGameBtn' onClick={startGame}>New Game</button>
-        </img>
+        </div>
       </div>    
     )
 }

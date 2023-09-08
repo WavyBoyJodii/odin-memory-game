@@ -13,17 +13,22 @@ function App() {
   const [ bestScore, setBestScore ] = useState(0)
   const [pokeArray, setPokeArray] = useState(Pokedex)
   const [ memory, setMemory ] = useState([])
-  const [winScreen, setWinScreen] = useState(false)
+  const [winScreen, setWinScreen] = useState(true)
   const [loseScreen, setLoseScreen] = useState(false)
 
   useEffect(() => {
     setPokeArray(_.shuffle(Pokedex))
   }, [])
 
+  useEffect(() => {
+    if (score === 12) setWinScreen(true);
+      }
+  , [score] )
+
   function cardClick(e) {
     const clicked = e.currentTarget.getAttribute('value');
     if (memory.includes(clicked)) {
-      gameOver();
+      setLoseScreen(true);
     } else {
       setMemory(memory.concat(clicked));
       setScore(score + 1);
@@ -36,18 +41,15 @@ function App() {
     if (score > bestScore) setBestScore(score);
     setPokeArray(_.shuffle(Pokedex));
     setMemory([]);
+    setLoseScreen(false);
+    setWinScreen(false);
   }
-  function checkWin() {
-    if (score === 12) {
-    setWinScreen(true);
-    // if (score > bestScore) setBestScore(score);
-    // setPokeArray(_.shuffle(Pokedex));
-    // setMemory([]);
-    }
-  }
-  function newGame() {
-
-  }
+  // function checkWin() {
+  //   if (score === 12) {
+  //   setWinScreen(true);
+  //   }
+  // }
+ 
 
   return (
     <div className='mainPage'>
@@ -59,8 +61,8 @@ function App() {
         </div>
       </header>
       <CardCase pokemon={pokeArray} clickHandler={cardClick}/>
-      <GameWin open={winScreen}/>
-      <GameLose open={loseScreen}/>
+      <GameWin open={winScreen} startGame={gameOver}/>
+      <GameLose open={loseScreen} startGame={gameOver}/>
     </div>
   )
 }
