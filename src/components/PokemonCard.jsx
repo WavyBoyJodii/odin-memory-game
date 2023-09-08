@@ -15,9 +15,9 @@ export default function PokemonCard({num, handler}){
 
 
     return(
-      <div value={num} onClick={handler}>
-        {poke && <img src={poke.sprites.front_default} alt="pokemon" />}
-        {poke && <p>{poke.name}</p>}
+      <div value={num} onClick={handler} className="pokeCard">
+        {poke && <img src={poke.sprites.front_default} alt="pokemon" className="pokePic"/>}
+        {poke && <p className="pokeName">{poke.name}</p>}
       </div> 
     )
 }
