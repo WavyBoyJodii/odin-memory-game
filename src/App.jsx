@@ -4,6 +4,7 @@ import CardCase from './components/CardCase'
 import Pokedex from './pokedex'
 import pokeJohto from './assets/pokeJohto.png'
 import './App.css'
+import './fonts/Pokemon-Solid.ttf'
 
 function App() {
   const [ score, setScore] = useState(0)
@@ -35,14 +36,14 @@ function App() {
 
   return (
     <div className='mainPage'>
-    <header>
-      <img src={pokeJohto} className='logo' />
-      <div className='scoreBox'>
-        <p className='scores'>{score}</p>
-        <p className='scores'>{bestScore}</p>
-      </div>
-    </header>
-     <CardCase pokemon={pokeArray} clickHandler={cardClick}/>
+      <header>
+        <img src={pokeJohto} className='logo' />
+        <div className='scoreBox'>
+          <div className='scores'>Score: {score}</div>
+          <div className='scores'>Top Score: {bestScore}</div>
+        </div>
+      </header>
+      <CardCase pokemon={pokeArray} clickHandler={cardClick}/>
     </div>
   )
 }

@@ -9,8 +9,7 @@ export default function PokemonCard({num, handler}){
 
     useEffect(() => {
       axios.get(`https://pokeapi.co/api/v2/pokemon/` + `${num}`)
-      .then(res => {setPoke(res.data);
-    console.log(res.data)})
+      .then(res => {setPoke(res.data);})
       .catch(err => console.log(err))    
     }, [])
 
@@ -18,7 +17,7 @@ export default function PokemonCard({num, handler}){
     return(
       <div value={num} onClick={handler} className="pokeCard">
         {poke && <img src={poke.sprites.front_default} alt="pokemon" className="pokePic"/>}
-        {poke && <p className="pokeName">{poke.name}</p>}
+        {poke && <div className="pokeName">{poke.name}</div>}
       </div> 
     )
 }
