@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import PokemonCard from "./PokemonCard";
+import '../styles/_CardCase.css';
 
 export default function CardCase({pokemon, clickHandler}) {
     return (

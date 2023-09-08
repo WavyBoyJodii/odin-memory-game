@@ -6,8 +6,8 @@ import pokeJohto from './assets/pokeJohto.png'
 import './App.css'
 
 function App() {
-  const [ score, setScore] = useState('0')
-  const [ bestScore, setBestScore ] = useState('0')
+  const [ score, setScore] = useState(0)
+  const [ bestScore, setBestScore ] = useState(0)
   const [pokeArray, setPokeArray] = useState(Pokedex)
   const [ memory, setMemory ] = useState([])
 
@@ -15,7 +15,7 @@ function App() {
     setPokeArray(_.shuffle(Pokedex))
   }, [])
 
-  function cardClick() {
+  function cardClick(e) {
     const clicked = e.currentTarget.getAttribute('value');
     if (memory.includes(clicked)) {
       gameOver();
@@ -27,13 +27,11 @@ function App() {
   }
 
   function gameOver() {
-    setScore('0');
-    setBestScore(score);
+    setScore(0);
+    if (score > bestScore) setBestScore(score);
     setPokeArray(_.shuffle(Pokedex));
+    setMemory([]);
   }
-
-
-
 
   return (
     <div className='mainPage'>
